@@ -957,9 +957,9 @@ void _create_sig_trk( int rep ) {
 	// print( "\n== _create_sig_trk(): xcor_qc=", xcor_qc, "\n" )	
 
 	if ( tag2bw && tag.hasKey(key) && xcor_qc.hasKey(key) ) {
-        print( "\n== _create_sig_trk(): creating directory...\n" )	
+        // print( "\n== _create_sig_trk(): creating directory...\n" )	
 		sig_o_dir := mkdir( "$out_dir/signal/tag2bw/$info" )
-        print( "\n== _create_sig_trk(): directory created\n" )	
+        // print( "\n== _create_sig_trk(): directory created\n" )	
 
 		fraglen := get_fraglen( xcor_qc{key} )
 		sig_trk{key} = _tag_to_bw( tag{key}, fraglen, sig_o_dir, info )
