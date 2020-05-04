@@ -954,7 +954,9 @@ void _create_sig_trk( int rep ) {
 		sig_trk{key} = _bam_to_bw( filt_bam{key}, sig_o_dir, info, 1 )
 	}
 
+	print( "\n== _create_sig_trk(): tag=$tag\n" )	
 	print( "\n== _create_sig_trk(): xcor_qc=$xcor_qc\n" )	
+	print( "\n== _create_sig_trk(): key=$key\n" )	
 
 	if ( tag2bw && tag.hasKey(key) && xcor_qc.hasKey(key) ) {
         // print( "\n== _create_sig_trk(): creating directory...\n" )	
