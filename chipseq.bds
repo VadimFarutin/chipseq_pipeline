@@ -72,7 +72,7 @@ void main() { // chipseq pipeline starts here
 
 	chk_input( true_rep, no_pseudo_rep ) // if inputs are fastq, bam, or tagalign, check if they exist
 	
-	//align() // align and postalign
+	align() // align and postalign
 
 	pool_tags() // make pooled tagaligns and choose appropriate control for each replicate
 
@@ -324,8 +324,8 @@ void _align_SE( int ctl, int rep, int nth_rep ) {
 			nth_xcor := distribute_nth( nth_rep, true_rep ? [1] : [2,1,1] ) // for [true-rep,pr1,pr2]
 
 			// xcor for true rep
-			( xcor_qc_, xcor_plot{key} ) = _xcor( subsampled_tag, qc_o_dir, info, nth_xcor[0], info )
-			xcor_qc{key} = xcor_qc_
+			//( xcor_qc_, xcor_plot{key} ) = _xcor( subsampled_tag, qc_o_dir, info, nth_xcor[0], info )
+			//xcor_qc{key} = xcor_qc_
 		}
 
 		if ( is_final_stage_xcor() ) return
