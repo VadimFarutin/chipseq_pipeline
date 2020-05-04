@@ -10,23 +10,23 @@ ucsc-bedclip
 picard ==1.97
 deeptools ==2.2.3
 numpy ==1.10.4 #==1.9.3 (conflict)
-matplotlib ==1.5.1
+matplotlib
 macs2 ==2.1.0
-boost ==1.57.0
-openssl ==1.0.2g-0
-graphviz=2.38.0=1
+boost
+openssl
+graphviz
 libtool
 ghostscript
 pigz
 zlib
-sambamba ==0.6.1
-r ==3.2.2
-r-snow
-r-snowfall
-r-bitops
-r-catools
-bioconductor-rsamtools
-r-spp ==1.13
+sambamba
+r ==3.5.1
+#r-snow
+#r-snowfall
+#r-bitops
+#r-catools
+#bioconductor-rsamtools
+#r-spp ==1.15.5
 
 #### wrong environment
 # picard ==1.97
