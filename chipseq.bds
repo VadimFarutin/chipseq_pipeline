@@ -793,8 +793,6 @@ string _call_peaks( string peakcaller, string tag1, string tag1_ctl, string frag
 		return regionpeak // use regionpeak instead of narrowpeak
 	}
 	else if ( peakcaller == "macs2" ) {
-        print( "\n== macs2 peakcaller \n" )
-
 		string narrowpeak, gpeak, fc_bw, pval_bw
 
 		( narrowpeak, gpeak, fc_bw, pval_bw ) \
