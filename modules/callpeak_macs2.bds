@@ -55,6 +55,7 @@ string[] _macs2( string tag, string ctl_tag, string fraglen, bool make_sig, \
 
 	in 	:= (ctl_tag != "") ? [ tag, ctl_tag ] : [ tag ]
  	out 	:= make_sig ? [ npeakfile, gpeakfile, fc_bigwig, pval_bigwig ] : [ npeakfile, gpeakfile ]
+    print( "\n== MACS2 make_sig=$make_sig\n" )
 
  	taskName:= "macs2 " + label
 	mem := get_res_mem(mem_macs2,1);	timeout := get_res_wt(wt_macs2)
@@ -69,7 +70,6 @@ string[] _macs2( string tag, string ctl_tag, string fraglen, bool make_sig, \
 		//==========================================
 		//# Generate narrow peaks and preliminary signal tracks
 		//============================================
-        print( "\n== MACS2 make_sig=$make_sig\n" )
 		sys macs2 callpeak -t $tag $ctl -f BED -n $peak_o_dir/$prefix_basename -g $gensz -p 0.01 --nomodel --shift 0 --keep-dup all -B --SPMR
 
 		//# Sort by Col8 in descending order and replace long peak names in Column 4 with Peak_<peakRank>
