@@ -109,27 +109,27 @@ string[] _macs2( string tag, string ctl_tag, string fraglen, bool make_sig, \
 		//# Remove coordinates outside chromosome sizes (stupid MACS2 bug)
 		//# Convert bedgraph to bigwig
 
-		//sys if [[ $make_sig == "true" ]]; then \
-		//	\
-		//	macs2 bdgcmp -t "$prefix"_treat_pileup.bdg -c "$prefix"_control_lambda.bdg --outdir $peak_o_dir -o "$prefix_basename"_FE.bdg -m FE; \
-		//	slopBed -i "$prefix"_FE.bdg -g $chrsz -b 0 |   awk '{if ($3 != -1) print $0}' |  bedClip stdin $chrsz $fc_bedgraph; \
-		//	rm -f "$prefix"_FE.bdg; \
-		//	\
-		//	sort -k1,1 -k2,2n $fc_bedgraph > $fc_bedgraph_srt; \
-		//	bedGraphToBigWig $fc_bedgraph_srt $chrsz $fc_bigwig; \
-		//	rm -f $fc_bedgraph $fc_bedgraph_srt; \
-		//	\
-		//	chipReads=$(zcat $tag | wc -l | awk '{printf "%f", $1/1000000}'); \
-		//	$sval_line; \
-		//	macs2 bdgcmp -t "$prefix"_treat_pileup.bdg -c "$prefix"_control_lambda.bdg --outdir $peak_o_dir -o "$prefix_basename"_ppois.bdg -m ppois -S "${sval}"; \
-		//	slopBed -i "$prefix"_ppois.bdg -g $chrsz -b 0 |   awk '{if ($3 != -1) print $0}' |  bedClip stdin $chrsz $peak_o_dir/$prefix_basename.pval.signal.bedgraph; \
-		//	rm -rf "$prefix"_ppois.bdg; \
-		//	\
-		//	sort -k1,1 -k2,2n $pval_bedgraph > $pval_bedgraph_srt; \
-		//	bedGraphToBigWig $pval_bedgraph_srt $chrsz $pval_bigwig; \
-		//	\
-		//	rm -f $pval_bedgraph $pval_bedgraph_srt; \
-		//	fi
+		sys if [[ $make_sig == "true" ]]; then \
+			\
+			macs2 bdgcmp -t "$prefix"_treat_pileup.bdg -c "$prefix"_control_lambda.bdg --outdir $peak_o_dir -o "$prefix_basename"_FE.bdg -m FE; \
+			slopBed -i "$prefix"_FE.bdg -g $chrsz -b 0 |   awk '{if ($3 != -1) print $0}' |  bedClip stdin $chrsz $fc_bedgraph; \
+			rm -f "$prefix"_FE.bdg; \
+			\
+			sort -k1,1 -k2,2n $fc_bedgraph > $fc_bedgraph_srt; \
+			bedGraphToBigWig $fc_bedgraph_srt $chrsz $fc_bigwig; \
+			rm -f $fc_bedgraph $fc_bedgraph_srt; \
+			\
+			chipReads=$(zcat $tag | wc -l | awk '{printf "%f", $1/1000000}'); \
+			$sval_line; \
+			macs2 bdgcmp -t "$prefix"_treat_pileup.bdg -c "$prefix"_control_lambda.bdg --outdir $peak_o_dir -o "$prefix_basename"_ppois.bdg -m ppois -S "${sval}"; \
+			slopBed -i "$prefix"_ppois.bdg -g $chrsz -b 0 |   awk '{if ($3 != -1) print $0}' |  bedClip stdin $chrsz $peak_o_dir/$prefix_basename.pval.signal.bedgraph; \
+			rm -rf "$prefix"_ppois.bdg; \
+			\
+			sort -k1,1 -k2,2n $pval_bedgraph > $pval_bedgraph_srt; \
+			bedGraphToBigWig $pval_bedgraph_srt $chrsz $pval_bigwig; \
+			\
+			rm -f $pval_bedgraph $pval_bedgraph_srt; \
+			fi
 
 		sys rm -f "$prefix"_treat_pileup.bdg "$prefix"_control_lambda.bdg
 

@@ -715,7 +715,7 @@ void _call_peaks( string pc, int nth_peak ) { // pc: pc
 
 		pooled_hrchy 	:= "pooled_rep" 
 
-		peak_pooled{"$pc"}= _call_peaks( pc, tag{"0,pooled"}, tag_ctl{"pooled"}, 1, true, pooled_o_dir, pooled_sig_o_dir, \
+		peak_pooled{"$pc"}= _call_peaks( pc, tag{"0,pooled"}, tag_ctl{"pooled"}, 1, false, pooled_o_dir, pooled_sig_o_dir, \
 							"pooled", tag_ctl_label{"pooled"}, nth_pooled, pooled_hrchy )
 		sleep( 4 )
 
@@ -793,16 +793,20 @@ string _call_peaks( string peakcaller, string tag1, string tag1_ctl, string frag
 		return regionpeak // use regionpeak instead of narrowpeak
 	}
 	else if ( peakcaller == "macs2" ) {
-		string narrowpeak, gpeak, fc_bw, pval_bw
-
-		( narrowpeak, gpeak, fc_bw, pval_bw ) \
-			= _macs2( tag1, tag1_ctl, fraglen, make_sig, peak_o_dir, sig_o_dir, label, label_ctl, hrchy )
+        string narrowpeak, gpeak, fc_bw, pval_bw
 
 		// macs2 generates signal tracks
 		if ( make_sig ) {
+            ( narrowpeak, gpeak, fc_bw, pval_bw ) \
+                = _macs2( tag1, tag1_ctl, fraglen, make_sig, peak_o_dir, sig_o_dir, label, label_ctl, hrchy )
+
  			pval_bigwig{label} 		= pval_bw
 			fc_bigwig{label} 		= fc_bw
 		}
+        else {
+            ( narrowpeak, gpeak ) \
+                = _macs2( tag1, tag1_ctl, fraglen, make_sig, peak_o_dir, sig_o_dir, label, label_ctl, hrchy )            
+        }
 
 		return narrowpeak // use narrowpeak
 	}
