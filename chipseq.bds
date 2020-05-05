@@ -748,7 +748,7 @@ void _call_peaks( string pc, int nth_peak ) { // pc: pc
 		hrchy 	:= "rep$rep"
 
 		if ( !macs2_for_pooled_rep_only || pc != "macs2" ) \
-			peak{"$pc,$rep"} = _call_peaks( pc, tag{"0,$rep"}, tag_ctl{rep}, 1, true, o_dir, sig_dir, \
+			peak{"$pc,$rep"} = _call_peaks( pc, tag{"0,$rep"}, tag_ctl{rep}, 1, false, o_dir, sig_dir, \
 							"rep$rep", tag_ctl_label{rep}, nth_true, hrchy )
 		sleep( 4 )
 
