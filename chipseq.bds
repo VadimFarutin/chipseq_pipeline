@@ -783,6 +783,7 @@ string _call_peaks( string peakcaller, string tag1, string tag1_ctl, string frag
 			int nth_peak, string hrchy ) {
 	
 	if ( peakcaller == "spp" ) {
+        print( "\n== spp peakcaller \n" )
 
 		string regionpeak, score, pdf 
 
@@ -792,6 +793,7 @@ string _call_peaks( string peakcaller, string tag1, string tag1_ctl, string frag
 		return regionpeak // use regionpeak instead of narrowpeak
 	}
 	else if ( peakcaller == "macs2" ) {
+        print( "\n== macs2 peakcaller \n" )
 
 		string narrowpeak, gpeak, fc_bw, pval_bw
 
